@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<p-button type="button" class="p-mr-2" (click)="sideBar = true" icon="pi pi-bars"></p-button>
+
+<br/><br/>
+
+<div class="p-d-flex">    
+    <p-card>
+        <router-outlet></router-outlet>
+    </p-card>
+</div>
+<p-toast></p-toast>
+
+<p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+
+<p-sidebar [(visible)]="sideBar">
+    <a class="sidebar-item" href="/">
+            <i class="pi pi-list"></i> Listagem de Itens
+    </a>
+    <a class="sidebar-item" href="/novo">
+            <i class="pi pi-plus"></i> Novo Item
+    </a>
+</p-sidebar>

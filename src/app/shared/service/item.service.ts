@@ -6,18 +6,20 @@ import { Item } from '../item';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Irá sempre retornar uma promise
+ */
 export class ItemService {
 
   constructor() { }
 
-  public save(item: Item) {
-
+  public async save(item: Item) {
+    await Promise.resolve();
     if (!item.uuid) {
       let _uuid = uuidv4();
       item.uuid = _uuid;
     }
-
-    localStorage.setItem(item.uuid + "", JSON.stringify(item));
+    return localStorage.setItem(item.uuid + "", JSON.stringify(item));
   }
 
   public async findAll(){ 
@@ -35,7 +37,8 @@ export class ItemService {
     return JSON.parse(_item);
   }
 
-  public remove(key:string) {
-    localStorage.removeItem(key);
+  public async remove(key: string) {
+    await Promise.resolve();
+    return localStorage.removeItem(key);
   }
 }

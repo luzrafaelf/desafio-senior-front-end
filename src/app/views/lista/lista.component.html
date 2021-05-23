@@ -1,31 +1,29 @@
-<button pButton type="button" icon="pi pi-plus" label="Adicionar Item" (click)="novo()" class="p-button-success p-button-rounded"></button>
-
-
+<h3>Listagem de Itens</h3>
 <p-table [value]="itens">
     <ng-template pTemplate="header">
         <tr>
             <th>Nome</th>
-            <th>Unidade de Medida</th>
             <th>Quantidade</th>
             <th>Preço</th>
             <th>Perecível</th>
             <th>Validade</th>
             <th>Fabricação</th>
-            <th></th>
+            <th>
+                <button pButton type="button" icon="pi pi-plus" label="Adicionar Item" (click)="novo()" class="p-button-success p-button-rounded"></button>
+            </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-item>
         <tr>
             <td>{{item.nome}}</td>
-            <td>{{item.unidadeMedida}}</td>
             <td>{{item.quantidade}}</td>
-            <td>{{item.preco | currency}}</td>
+            <td>{{item.preco | currency : 'R$'}}</td>
             <td>{{item.perecivel ? 'Sim' : 'Não'}}</td>
             <td>{{item.dataValidade | date: 'dd/MM/yyyy'}}</td>
             <td>{{item.dataFabricacao | date: 'dd/MM/yyyy'}}</td>
             <td>
-                <button pButton type="button" (click)="editar(item)" icon="pi pi-pencil" class="p-button-raised p-button-rounded"></button>
-                <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded"></button>
+                <button pButton type="button" style="margin-right: 10px;" (click)="editar(item)" icon="pi pi-pencil" class="p-button-raised p-button-rounded"></button>
+                <button pButton type="button" (click)="remover(item)" icon="pi pi-trash" class="p-button-danger p-button-rounded"></button>
             </td>
         </tr>
     </ng-template>

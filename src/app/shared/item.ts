@@ -3,8 +3,8 @@ import { UnidadeMedida } from "./unidadeMedida";
 export class Item{
 
     constructor (
-        public uuid: String,
-        public nome: String,
+        public uuid: string,
+        public nome: string,
         public unidadeMedida: UnidadeMedida,
         public quantidade: number,
         public preco: number,

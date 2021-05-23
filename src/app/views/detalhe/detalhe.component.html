@@ -1,18 +1,46 @@
-<p>detalhe works!</p>
+<form [formGroup]="detalheForm" (ngSubmit)="salvar(detalheForm.value)">
+    <h3> {{ novo ? 'Novo item' : 'Editando o Item'}} </h3>
+    <div class="p-fluid p-formgrid p-grid" styleClass="p-card-shadow">
+        <div class="p-field p-col-12 p-md-10">
+            <label for="ed_nome">Nome</label>
+            <input formControlName="nome" id="ed_nome" type="text" pInputText required/>
+        </div>
+        <div class="p-field p-col-4 p-md-2">
+            <label for="ed_preco">Preço</label>
+            <p-inputNumber formControlName="preco" id="ed_preco" mode="currency" locale="pt-BR" currency="BRL"></p-inputNumber>
+        </div>
+        <div class="p-field p-col-4 p-md-6">
+            <label for="ed_unidade_medida">Unidade de Medida</label>
+            <p-dropdown formControlName="unidadeMedida" id="ed_unidade_medida" [options]="unidadesMedida" ></p-dropdown>
+        </div>
+        <div class="p-field p-col-4 p-md-6">
+            <label for="ed_quantidade">Quantidade</label>
+            <p-inputNumber formControlName="quantidade" id="ed_quantidade" mode="decimal" [minFractionDigits]="3" suffix="{{getSuffix()}}"></p-inputNumber>
+        </div>
+        <div class="p-field p-col-2 p-md-2">
+            <label for="ed_perecivel">Perecível</label><br/>
+            <p-inputSwitch formControlName="perecivel" id="ed_perecivel"></p-inputSwitch>
+        </div>
+        <div class="p-field p-col-12 p-md-5">
+            <label for="ed_data_validade">Data de Validade</label>
+            <p-calendar formControlName="dataValidade" id="ed_data_validade"></p-calendar>
+        </div>
+        <div class="p-field p-col-12 p-md-5">
+            <label for="ed_data_fabricacao">Data de Fabricação</label>
+            <p-calendar formControlName="dataFabricacao" id="ed_data_fabricacao"></p-calendar>
+        </div>
 
-{{item | json}}
+        <div class="p-field p-col-12" style="margin-top: 40px;">
+            <div class="p-grid">
+                <div class="p-col-6 p-md-2">
+                    <button pButton label="Salvar" type="submit" class="p-button p-button-raised"></button>               
+                </div>
+                <div class="p-col-6 p-md-2">
+                    <button pButton label="Cancelar" type="button" (click)="voltar()" class="p-button p-button-danger"></button>
+                </div>
+            </div>
+        </div>
 
-<br/>
-
-Nome
-<input type="text" pInputText [(ngModel)]="item.nome" pattern="^[A-Za-z]+$" maxlength="50" required/>
-
-<br/>
-
-Preço
-<p-inputNumber [(ngModel)]="item.preco" mode="currency" locale="pt-BR" currency="BRL" [minFractionDigits]="2"></p-inputNumber>
-
-<br/>
-
-Unidade de Medida
-<p-dropdown [options]="unidadesMedida" [(ngModel)]="item.unidadeMedida"></p-dropdown>
+    </div>
+    
+</form>
