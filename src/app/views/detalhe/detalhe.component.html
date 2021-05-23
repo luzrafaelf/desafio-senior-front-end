@@ -1,0 +1,18 @@
+<p>detalhe works!</p>
+
+{{item | json}}
+
+<br/>
+
+Nome
+<input type="text" pInputText [(ngModel)]="item.nome" pattern="^[A-Za-z]+$" maxlength="50" required/>
+
+<br/>
+
+Preço
+<p-inputNumber [(ngModel)]="item.preco" mode="currency" locale="pt-BR" currency="BRL" [minFractionDigits]="2"></p-inputNumber>
+
+<br/>
+
+Unidade de Medida
+<p-dropdown [options]="unidadesMedida" [(ngModel)]="item.unidadeMedida"></p-dropdown>
